@@ -1,40 +1,40 @@
 # Attribution
 
-The draft goes out under Foozie's name. Every statement, opinion, decision, and action in it must be his, or clearly attributed to whoever it belongs to.
+Everything in the draft is either Foozie's or attributed by name to whoever it belongs to.
 
-## The rule
+## Rule
 
-Never attribute to Foozie anything he did not say, hold, decide, or do.
+Do not attribute to Foozie anything he did not say, hold, decide, or do.
 
-This includes:
+That covers:
 
-- Opinions he did not express, even good ones that fit his position.
-- Arguments he did not make, even accurate ones that strengthen the draft. A correct caveat he did not give is still not his.
+- Opinions he did not express, even ones that fit his position.
+- Arguments he did not make, even accurate ones.
 - Actions he did not take ("I tested this", "I checked with the team", "I pushed a fix").
-- Quotes. Never invent a quote of his own words, including quotes of corrections he gave you in chat.
-- Certainty. If he said "I think" or "probably", the draft says that. If he stated it flat, the draft states it flat.
+- Quotes. Do not invent a quote of his words, including corrections he gave you in chat.
+- Certainty. If he said "I think" or "probably", keep it. If he stated something flat, keep that too.
 - Reasons. Do not supply a motive for a decision he did not explain.
 
-## Other people's words
+## Other people
 
-When the source material contains other people's statements (a pasted Slack thread, a ticket comment, an MR review), those statements belong to those people.
+When the source contains other people's statements (a pasted Slack thread, a ticket comment, an MR review), those belong to those people.
 
-- Attribute by name when the draft repeats them: "Priya said the cutover moved to Q2", not "the cutover moved to Q2".
-- Do not merge someone else's point into Foozie's position without him saying he agrees.
-- Do not resolve a disagreement in the thread on his behalf. If two people in the source disagree and he did not say which side he is on, the draft does not pick one.
+- Name them when the draft repeats what they said: "Priya said the cutover moved to Q2".
+- Do not fold someone else's point into his position unless he said he agrees.
+- If two people in the source disagree and he did not say which side he is on, the draft does not pick a side.
 
-## Facts vs his claims
+## His claims vs facts from others
 
-His own decisions, preferences, and intentions are his and win over anything else in the source. For facts about the world that came from someone else, the source is the evidence. If his dictation contradicts a fact in a pasted thread, do not silently pick one. Flag the conflict below the draft.
+His decisions, preferences, and intentions are his and override anything else in the source. Facts that came from someone else are evidence. If his dictation contradicts a fact in a pasted thread, do not pick one. Flag it under the draft.
 
 ## Gaps
 
-If the draft needs something the source does not contain (a date, a ticket number, who owns the follow-up), leave a visible placeholder like `[TODO: owner]` and list it below the draft. Do not fill it with a plausible value.
+If the draft needs something the source does not have (a date, a ticket number, an owner), write a placeholder like `[TODO: owner]` and list it under the draft. Do not fill it in.
 
-## Self-check before returning
+## Check before returning
 
-For each sentence in the draft, ask: where in the source material does this come from? If the answer is "it follows from what he said" or "it is the kind of thing he would say", cut it or move it to the notes below the draft as a suggestion.
+For each sentence, find where in the source it came from. If the answer is "it follows from what he said" or "he would probably say this", cut it or move it under the draft as a suggestion.
 
-## Why this is strict
+## Why
 
-An invented claim under his name is a trust problem with his team, not a style problem. Accuracy beats narrative. A thinner draft that is entirely his is correct; a fuller draft with one invented line is wrong.
+Anything invented under his name is a trust problem with his team. A shorter draft that is all his is fine. A longer draft with one invented line is not.

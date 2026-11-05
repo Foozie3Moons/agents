@@ -1,8 +1,8 @@
 # AI tics
 
-Patterns that read as model-generated even when every word is allowed. Banned vocabulary lives in `banned-words.md`; this file is for shape, not words. Check the draft against both.
+Patterns that read as model-generated even when every word is allowed. Banned vocabulary is in `banned-words.md`. Check the draft against both.
 
-Add a tic the moment you catch one. Each model release brings new ones.
+Add a tic when you catch one. New model releases bring new ones.
 
 ## Sentence shapes
 
@@ -10,7 +10,7 @@ Add a tic the moment you catch one. Each model release brings new ones.
 - Fragment triplets. Three short fragments in a row for rhythm. "Fast. Simple. Done."
 - Tidy question sets. Two or three rhetorical questions in a row, then the answer.
 - Parallel pairs with mirrored structure. "X does A; Y does B."
-- Sentence-final flourishes. A short tag sentence added for punch after the point already landed, when the point did not need it.
+- A short tag sentence added for punch after the point was already made.
 - Colon reveals. "The result: ..." "The catch: ..." as a recurring device. (A bold label with a colon in a Slack status update is a convention, not a tic.)
 
 ## Openers and closers
@@ -34,8 +34,8 @@ Add a tic the moment you catch one. Each model release brings new ones.
 - Hedging stacks: "I think this might possibly".
 - Confident generality in place of a specific: "significant improvements" where he gave a number.
 - Over-explaining a joke or a shorthand he used.
-- Evenness. His writing has a point of view; a draft that reads as neutral and balanced on something he had an opinion about is wrong.
-- Smoothing. Rough edges he dictated ("it was terrible", "unfortunately") get kept. Polishing them out is a tic.
+- Neutral tone on something he had an opinion about.
+- Polishing out rough phrasing he dictated ("it was terrible", "unfortunately").
 
 ## Exemptions
 

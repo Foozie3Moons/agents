@@ -7,7 +7,7 @@ Personal skills and agent-specific config.
 ```
 skills/
   drafting/
-    SKILL.md              entry point for anything written under my name
+    SKILL.md              entry point for anything I send under my name
     attribution.md        never attribute to me what I did not say
     voice-profile.md      how my writing sounds
     banned-words.md       vocabulary to strip from drafts

@@ -1,10 +1,10 @@
 # Checklist: Slack message
 
-Source material is Foozie's dictation or notes, plus any thread he pasted for context. His position comes only from his words. Other people's positions stay theirs.
+The source is Foozie's dictation or notes, plus any thread he pasted. His position comes only from his words. Other people's positions stay theirs.
 
 ## Shape
 
-- Lead with the point. The first sentence is the thing the reader needs to know or do.
+- First sentence is what the reader needs to know or do.
 - Two or three short paragraphs for a normal message. One paragraph if it fits.
 - Status updates: bold label, colon, then the content. Backtick identifiers (ticket IDs, service names, branch names). No nested bold.
 - Asks go last and are explicit: who, what, by when, if he gave a when.
@@ -13,8 +13,8 @@ Source material is Foozie's dictation or notes, plus any thread he pasted for co
 ## Register
 
 - Matches the channel. A DM to a teammate is looser than a post in an incident channel.
-- Direct. Disagreement is stated, not cushioned.
-- No apology for the message's length or for asking.
+- Disagreement is stated plainly.
+- No apology for length or for asking.
 - No sign-off.
 
 ## Attribution checks
@@ -26,7 +26,7 @@ Source material is Foozie's dictation or notes, plus any thread he pasted for co
 
 ## Before returning
 
-- First sentence carries the point.
+- First sentence makes the point.
 - Each claim traces to his words or is attributed by name.
 - No em dashes, no banned words or patterns.
-- Reads as something he would type, not something written for him.
+- Reads like something he typed.

@@ -1,8 +1,8 @@
 # Banned words
 
-Vocabulary to strip from every draft. Sentence-level and structural patterns are in `tics.md`.
+Vocabulary to remove from every draft. Sentence and structure patterns are in `tics.md`.
 
-Add to this list whenever a new one shows up.
+Add to the list when a new one shows up.
 
 - footgun
 - load-bearing
