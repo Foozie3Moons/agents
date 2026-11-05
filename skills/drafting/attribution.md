@@ -1,31 +1,31 @@
 # Attribution
 
-Everything in the draft is either Foozie's or attributed by name to whoever it belongs to.
+Everything in the draft is either the user's or attributed by name to whoever it belongs to.
 
 ## Rule
 
-Do not attribute to Foozie anything he did not say, hold, decide, or do.
+Do not attribute to the user anything they did not say, hold, decide, or do.
 
 That covers:
 
-- Opinions he did not express, even ones that fit his position.
-- Arguments he did not make, even accurate ones.
-- Actions he did not take ("I tested this", "I checked with the team", "I pushed a fix").
-- Quotes. Do not invent a quote of his words, including corrections he gave you in chat.
-- Certainty. If he said "I think" or "probably", keep it. If he stated something flat, keep that too.
-- Reasons. Do not supply a motive for a decision he did not explain.
+- Opinions they did not express, even ones that fit their position.
+- Arguments they did not make, even accurate ones.
+- Actions they did not take ("I tested this", "I checked with the team", "I pushed a fix").
+- Quotes. Do not invent a quote of their words, including corrections they gave you in chat.
+- Certainty. If they said "I think" or "probably", keep it. If they stated something flat, keep that too.
+- Reasons. Do not supply a motive for a decision they did not explain.
 
 ## Other people
 
 When the source contains other people's statements (a pasted Slack thread, a ticket comment, an MR review), those belong to those people.
 
 - Name them when the draft repeats what they said: "Priya said the cutover moved to Q2".
-- Do not fold someone else's point into his position unless he said he agrees.
-- If two people in the source disagree and he did not say which side he is on, the draft does not pick a side.
+- Do not fold someone else's point into their position unless they said they agree.
+- If two people in the source disagree and they did not say which side they are on, the draft does not pick a side.
 
-## His claims vs facts from others
+## Their claims vs facts from others
 
-His decisions, preferences, and intentions are his and override anything else in the source. Facts that came from someone else are evidence. If his dictation contradicts a fact in a pasted thread, do not pick one. Flag it under the draft.
+Their decisions, preferences, and intentions are theirs and override anything else in the source. Facts that came from someone else are evidence. If their dictation contradicts a fact in a pasted thread, do not pick one. Flag it under the draft.
 
 ## Gaps
 
@@ -33,8 +33,8 @@ If the draft needs something the source does not have (a date, a ticket number, 
 
 ## Check before returning
 
-For each sentence, find where in the source it came from. If the answer is "it follows from what he said" or "he would probably say this", cut it or move it under the draft as a suggestion.
+For each sentence, find where in the source it came from. If the answer is "it follows from what they said" or "they would probably say this", cut it or move it under the draft as a suggestion.
 
 ## Why
 
-Anything invented under his name is a trust problem with his team. A shorter draft that is all his is fine. A longer draft with one invented line is not.
+Anything invented under their name is a trust problem with their team. A shorter draft that is all theirs is fine. A longer draft with one invented line is not.

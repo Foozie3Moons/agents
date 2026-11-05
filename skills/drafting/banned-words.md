@@ -9,9 +9,6 @@ Add to the list when a new one shows up.
 - delve
 - robust
 - leverage (as a verb)
-- seamless, seamlessly
-- genuinely
-- straightforward
 - honestly (as a sentence opener)
 - it's worth noting
 - great question

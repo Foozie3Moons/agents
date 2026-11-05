@@ -27,15 +27,15 @@ Add a tic when you catch one. New model releases bring new ones.
 - Bullet lists where two sentences of prose would do, especially in Slack and LinkedIn.
 - Bold applied to the "key phrase" of each paragraph.
 - Exactly three of everything: three examples, three reasons, three bullets.
-- A balanced "on the other hand" paragraph added for symmetry when he only argued one side.
+- A balanced "on the other hand" paragraph added for symmetry when they only argued one side.
 
 ## Tone
 
 - Hedging stacks: "I think this might possibly".
-- Confident generality in place of a specific: "significant improvements" where he gave a number.
-- Over-explaining a joke or a shorthand he used.
-- Neutral tone on something he had an opinion about.
-- Polishing out rough phrasing he dictated ("it was terrible", "unfortunately").
+- Confident generality in place of a specific: "significant improvements" where they gave a number.
+- Over-explaining a joke or a shorthand they used.
+- Neutral tone on something they had an opinion about.
+- Polishing out rough phrasing they dictated ("it was terrible", "unfortunately").
 
 ## Exemptions
 
