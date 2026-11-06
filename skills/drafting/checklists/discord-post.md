@@ -16,6 +16,7 @@ The source is the user's dictation or notes, plus anything they pasted. Their po
 - Casual. Contractions, shorthand, the occasional "honestly" are fine.
 - Matches the channel. A dev channel is looser than an announcements channel.
 - No hype. State what the thing is and what it does.
+- Default to what the thing does for the reader, not how it works. Internals only when the user asks for them, and lighter than a change request or blog post: name the mechanism in a clause, do not explain it.
 - No sign-off, no emoji unless they used one in the source.
 
 ## Attribution checks
