@@ -1,6 +1,6 @@
 ---
 name: drafting
-description: Use when asked to draft, write, or rewrite anything that will be sent or published under the user's name (Slack messages, merge request or pull request descriptions, blog posts, LinkedIn posts or replies, emails, Discord posts). Not for code, comments, commit messages, or answers in chat.
+description: Use when asked to draft, write, or rewrite anything that will be sent or published under the user's name (Slack messages, merge request or pull request descriptions, blog posts, LinkedIn posts or replies, emails, Discord posts, package READMEs). Not for code, comments, commit messages, or answers in chat.
 ---
 
 # Drafting

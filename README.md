@@ -17,6 +17,7 @@ skills/
       slack-message.md
       discord-post.md
       linkedin-post.md
+      package-readme.md
 ```
 
 ## Install
