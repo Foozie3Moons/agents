@@ -1,8 +1,8 @@
-import type { StorybookConfig } from '@storybook/react-vite';
+import type { StorybookConfig } from 'storybook-react-rsbuild';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.tsx'],
-  framework: { name: '@storybook/react-vite', options: {} },
+  framework: 'storybook-react-rsbuild',
 };
 
 export default config;

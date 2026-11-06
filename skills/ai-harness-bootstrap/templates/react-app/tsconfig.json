@@ -13,7 +13,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "types": ["@testing-library/jest-dom/vitest", "vite/client"]
+    "types": ["@rsbuild/core/types"]
   },
-  "include": ["src"]
+  "include": ["src", "rstest.setup.ts"]
 }

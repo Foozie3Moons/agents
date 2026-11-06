@@ -9,7 +9,7 @@ src/backend/                 see nest-service.md
 src/backend-for-frontend/
   bff.module.ts              BFF composition root; app.module.ts imports this and nothing else from the tree
   <feature>/                 same five layers; may import backend use-case/, application/, domain/ (types)
-src/frontend/                see react-app.md; its own package.json, eslint, depcruise, vitest
+src/frontend/                see react-app.md; its own package.json, eslint, depcruise, rsbuild, rstest
 src/shared/                  tiny constants both sides import (API_PREFIX, paths); nothing else
 migrations/
 ```

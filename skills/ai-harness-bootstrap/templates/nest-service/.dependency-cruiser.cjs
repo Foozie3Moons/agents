@@ -21,7 +21,7 @@ module.exports = {
       comment: 'A source file nothing imports is dead or mis-wired.',
       from: {
         orphan: true,
-        pathNot: ['\\.d\\.ts$', TEST, '^src/backend/main\\.ts$', '\\.module\\.ts$', '^src/frontend/src/(main\\.tsx|vitest\\.setup\\.ts)$', '^src/frontend/(\\.storybook/|.*\\.config\\.(ts|cjs)$|\\.dependency-cruiser\\.cjs$)'],
+        pathNot: ['\\.d\\.ts$', TEST, '^src/backend/main\\.ts$', '\\.module\\.ts$', '^src/frontend/src/main\\.tsx$', '^src/frontend/(\\.storybook/|.*\\.config\\.(ts|cjs)$|rstest\\.setup\\.ts$|\\.dependency-cruiser\\.cjs$)'],
       },
       to: {},
     },

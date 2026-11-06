@@ -10,7 +10,7 @@ A new repo gets every mechanical guard on day 1, before the first feature. Retro
 
 ## Steps
 
-1. Pick the kind. `package` (TS library), `nest-service` (Nest, no UI), `react-app` (Vite + React, no server), `bff-app` (Nest + BFF + React, pnpm workspace). If the user did not say, ask once; the four are described in `kinds/<kind>.md`. Read that file before scaffolding.
+1. Pick the kind. `package` (TS library), `nest-service` (Nest, no UI), `react-app` (Rsbuild + React, no server), `bff-app` (Nest + BFF + React, pnpm workspace). If the user did not say, ask once; the four are described in `kinds/<kind>.md`. Read that file before scaffolding.
 2. Scaffold: `bash scripts/scaffold.sh <kind> <target-dir>`. It refuses a non-empty directory. It layers `templates/common`, the kind's templates, and copies `.claude/rules/*.md` from `plugins/bff/rules/` with `paths:` frontmatter set for the layout.
 3. Name it. Replace the placeholders: `name` in every `package.json` (`@scope/package-name`, `service-name`, `app-name`), `<title>` in `index.html`, and the first two lines of `CLAUDE.md`. Nothing else in the templates is a placeholder.
 4. Fill `CLAUDE.md` from the kind doc's layout block and the real `package.json` scripts. Delete the angle-bracket hints. Keep it under 60 lines; it is read on every turn.
@@ -35,7 +35,7 @@ templates/
   nest-common/   eslint-rules/*.cjs (the five custom rules; Nest kinds only)
   package/       library: NodeNext ESM, exports map, named-export entry
   nest-service/  Nest app: core/{config,database,logging}, migrations/, boundaries + depcruise layer rules
-  react-app/     Vite + React 19 + React Query + CSS Modules + Storybook + RTL; frontend lint and depcruise
+  react-app/     Rsbuild + React 19 (compiler on) + React Query + CSS Modules + Storybook + Rstest/RTL; frontend lint and depcruise
   bff-app/       nest-service + react-app under src/frontend + src/backend-for-frontend + src/shared
 scripts/scaffold.sh   layer assembly
 kinds/<kind>.md       layout, scripts, which guards apply, first-feature checklist

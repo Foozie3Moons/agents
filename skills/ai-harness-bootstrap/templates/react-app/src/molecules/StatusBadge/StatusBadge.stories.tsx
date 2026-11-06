@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from 'storybook-react-rsbuild';
 import { StatusBadge } from './StatusBadge.js';
 
 const meta = { component: StatusBadge } satisfies Meta<typeof StatusBadge>;

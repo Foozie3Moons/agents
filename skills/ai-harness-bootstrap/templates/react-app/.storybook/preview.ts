@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/react-vite';
+import type { Preview } from 'storybook-react-rsbuild';
 import '../src/styles/tokens.css';
 
 const preview: Preview = {};

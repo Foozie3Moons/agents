@@ -39,6 +39,12 @@ const IMPORT_BANS = [
     importNames: ['HashRouter', 'BrowserRouter', 'createHashRouter', 'createBrowserRouter', 'RouterProvider'],
     message: 'Router constructors only in src/routes.tsx and src/main.tsx.',
   },
+  {
+    // The React Compiler owns memoization (rsbuild.config.ts). See frontend.md §Memoization.
+    name: 'react',
+    importNames: ['useMemo', 'useCallback', 'memo'],
+    message: 'The React Compiler memoizes. Fix the Rules-of-React violation instead of hand-memoizing.',
+  },
   { name: 'swr', message: 'Not used. Build on @tanstack/react-query in src/api/use*.ts.' },
   { name: 'axios', message: 'Not used. Go through src/api/httpClient.ts.' },
 ];
@@ -63,7 +69,7 @@ const INLINE_STYLE_BANS = [
 
 module.exports = tseslint.config(
   {
-    ignores: ['dist/**', 'coverage/**', 'storybook-static/**', '.storybook/**', 'eslint.config.cjs', '.dependency-cruiser.cjs', 'vite.config.ts', 'vitest.config.ts'],
+    ignores: ['dist/**', 'coverage/**', 'storybook-static/**', '.storybook/**', 'eslint.config.cjs', '.dependency-cruiser.cjs', 'rsbuild.config.ts', 'rstest.config.ts', 'rstest.setup.ts'],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
@@ -78,6 +84,8 @@ module.exports = tseslint.config(
         argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_',
       }],
       '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
+      // Declaration merging (src/rstest-matchers.d.ts) needs an interface that only extends.
+      '@typescript-eslint/no-empty-object-type': ['error', { allowInterfaces: 'with-single-extends' }],
     },
   },
   {
@@ -110,7 +118,7 @@ module.exports = tseslint.config(
     rules: { 'no-restricted-imports': 'off', 'no-restricted-syntax': 'off' },
   },
   {
-    files: ['src/providers/**', 'src/routes.tsx', 'src/main.tsx', 'src/**/*.test.{ts,tsx}', 'src/vitest.setup.ts'],
+    files: ['src/providers/**', 'src/routes.tsx', 'src/main.tsx', 'src/**/*.test.{ts,tsx}'],
     rules: { 'no-restricted-imports': 'off' },
   },
   {

@@ -14,7 +14,7 @@ module.exports = {
     {
       name: 'no-orphans',
       severity: 'warn',
-      from: { orphan: true, pathNot: ['\\.d\\.ts$', TEST, '^src/main\\.tsx$', '^src/vitest\\.setup\\.ts$'] },
+      from: { orphan: true, pathNot: ['\\.d\\.ts$', TEST, '^src/main\\.tsx$'] },
       to: {},
     },
     {

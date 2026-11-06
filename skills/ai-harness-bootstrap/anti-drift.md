@@ -38,7 +38,9 @@ Every guard, what it catches, where it lives, and which kinds carry it. A rule t
 | `lint:css` grep | generic class names (`.container`, `.wrapper`, `.box`, `.inner`, `.outer`) | frontend `package.json` | react-app, bff-app |
 | deep-import ban into `logicalComponents/<Name>/` | consumers coupling to a container's internals | frontend `eslint.config.cjs` | react-app, bff-app |
 | frontend depcruise rules | molecules importing api/containers, anything but `routes.tsx` importing pages, api importing components | frontend `.dependency-cruiser.cjs` | react-app, bff-app |
-| `react-hooks/rules-of-hooks`, `exhaustive-deps` | conditional hooks, stale closures | frontend `eslint.config.cjs` | react-app, bff-app |
+| `react-hooks/rules-of-hooks`, `exhaustive-deps` | conditional hooks, stale closures; also what makes the React Compiler bail out | frontend `eslint.config.cjs` | react-app, bff-app |
+| `no-restricted-imports` react `useMemo`/`useCallback`/`memo` | hand memoization while the React Compiler is on | frontend `eslint.config.cjs` | react-app, bff-app |
+| Rstest reuses `rsbuild.config.ts` (`withRsbuildConfig`) | tests compiled differently from the app (plugins, CSS Modules, aliases) | `rstest.config.ts` | react-app, bff-app |
 | `/arch-drift-check` skill | what the linters cannot see: use-cases wrapping one service, policy above a gateway, inline prepared statements, containers rendering markup | `.claude/skills/arch-drift-check/` | all |
 
 ## Review-only (no mechanical guard yet)
@@ -56,7 +58,7 @@ After scaffolding, prove each guard class fires once, then delete the violation.
 - all: `export * from './x.js'` in an `index.ts` → ESLint error and the hook blocks the write; a two-file import cycle → `no-circular`.
 - package: `process.env.X` → `no-restricted-properties`.
 - nest-service, bff-app: a controller importing a repository → `boundaries/dependencies` and `api-must-not-skip-to-data-access`; a constructor param without `@Inject()` → `local/require-inject-decorator`; `` prepare(`... ${id}`) `` → `local/no-interpolated-sql`; `process.env` in a service → `local/no-process-env-outside-config`.
-- react-app, bff-app: `useQuery` in a molecule → `no-restricted-imports`; `fetch()` in a component → `no-restricted-syntax`; `style={{ padding: 4 }}` → `no-restricted-syntax`; `.container {}` in a module → `lint:css`; a molecule importing a page → `molecules-are-presentational`.
+- react-app, bff-app: `useQuery` in a molecule → `no-restricted-imports`; `useMemo` anywhere → `no-restricted-imports`; `fetch()` in a component → `no-restricted-syntax`; `style={{ padding: 4 }}` → `no-restricted-syntax`; `.container {}` in a module → `lint:css`; a molecule importing a page → `molecules-are-presentational`.
 
 ## Knowledge (proposed convention)
 

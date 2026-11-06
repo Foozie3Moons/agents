@@ -4,7 +4,7 @@ paths:
 ---
 # Frontend Rules
 
-React 19, Vite, React Query, CSS Modules, Storybook, React Testing Library. Extends `common.md`; wins on conflict. Normative sources: the repo's `docs/decisions/ADR-*.md` for container/presentational, CSS Modules, application shell, data access, styling hygiene, RTL and Storybook (written when the decision is made; until then this file is the rule), and `docs/design-system.md` (tokens, palette, type).
+React 19 with the React Compiler, Rsbuild (Rspack), React Query, CSS Modules, Storybook (`storybook-react-rsbuild`), Rstest + React Testing Library. Extends `common.md`; wins on conflict. Normative sources: the repo's `docs/decisions/ADR-*.md` for container/presentational, CSS Modules, application shell, data access, styling hygiene, RTL and Storybook (written when the decision is made; until then this file is the rule), and `docs/design-system.md` (tokens, palette, type).
 
 Layout: `layouts/` (app shell), `pages/` (route targets), `logicalComponents/` (containers: fetch and own state), `molecules/` (presentational: props in, markup out). Co-locate `Foo.tsx`, `Foo.module.css`, `Foo.test.tsx`, and `Foo.stories.tsx` for molecules with visual states.
 
@@ -229,7 +229,7 @@ useEffect(() => {
 }, [items]);
 
 // Right: derive inline
-const filtered = useMemo(() => items.filter(i => i.active), [items]);
+const filtered = items.filter(i => i.active); // the compiler memoizes this
 ```
 
 ```tsx
@@ -244,16 +244,13 @@ Valid `useEffect` uses: syncing to localStorage, setting up subscriptions, trigg
 
 ### Memoization
 
-USE `useMemo` for computationally expensive derivations (sorting, grouping, heavy filtering):
-- Do NOT memoize simple property access, string concatenation, or trivial transforms
+The React Compiler is on (`pluginReact({ reactCompiler: true })` in `rsbuild.config.ts`). It owns memoization.
 
-USE `useCallback` for handlers passed to memoized children:
-- Do NOT `useCallback` every handler by default — only when referential stability matters
-
-USE `useRef` for values read inside callbacks but not needed in render:
-- Mutable values that must not trigger re-renders (timers, previous values, imperative handles)
-
-Do not memoize as a default. Memoize when you have a measured problem or a referential stability requirement.
+- Do NOT write `useMemo`, `useCallback`, or `React.memo`. The compiler inserts the equivalent where the code follows the Rules of React; hand-written memoization is noise it has to reason around.
+- Write components and hooks the compiler can optimize: pure render, no mutation of props/state/values after creation (common.md §Immutability), hooks at the top level. `react-hooks/rules-of-hooks` and `exhaustive-deps` are errors.
+- A component the compiler skips (it bails out silently on rule violations) is fixed by fixing the violation, not by adding `useMemo`.
+- `useRef` stays for mutable values that must not trigger re-renders (timers, previous values, imperative handles).
+- A measured performance problem that survives the compiler is a task with a profile attached, and the fix is named in the brief; it is not a reason to hand-memoize on sight.
 
 ### Derived State Must Not Live in the Cache
 
@@ -268,7 +265,7 @@ Derived state is computed at render time from cached raw data using pure functio
 queryClient.setQueryData(['resource', id], rawItems: Map<string, Item>)
 
 // ✅ Derived state computed in component or custom hook
-const visibleItems = useMemo(() => computeVisible(rawItems), [rawItems])
+const visibleItems = computeVisible(rawItems) // pure function; the compiler memoizes
 
 // ❌ Never classify into view buckets inside cache
 { activeItems: Item[], inactiveItems: Item[] }  // wrong cache shape
@@ -291,7 +288,8 @@ A mutation invalidates the single cache entry that owns the changed resource. Bu
 
 ### Tooling
 
-- **Components**: Vitest + React Testing Library
+- **Runner**: Rstest (`@rstest/core`), reusing `rsbuild.config.ts` through `@rstest/adapter-rsbuild`; jsdom environment; `rstest.setup.ts` registers jest-dom matchers and RTL cleanup. Test APIs import from `@rstest/core` (Jest-compatible: `describe`, `it`, `expect`, `rs.mock`).
+- **Components**: React Testing Library
 - **Hooks**: `renderHook` from RTL
 - **API mocking**: msw — do not mock `fetch` or axios directly
 - **React Query**: wrap in `QueryClientProvider` with a fresh `QueryClient` per test
