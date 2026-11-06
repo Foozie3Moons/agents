@@ -13,6 +13,7 @@ src/backend/
     database/                 DB_CONNECTION provider, MigrationRunner
     logging/                  nestjs-pino LoggerModule
     types/                    pure types that domain/ may import
+    di-metadata.test.ts       canary: the test compiler emits decorator metadata
   transport/                  inbound adapters (bot framework, queue consumer); dispatch into api/ only
   <module>/                   one bounded context, five layers
     <module>.module.ts
@@ -26,7 +27,7 @@ migrations/                   NNN_name.sql, append-only; tests seed from these
 
 ## Guards
 
-Everything in `anti-drift.md` marked nest-service: boundaries, depcruise layer and tree rules, the five custom rules, vendor SDK fences, pino fence, swc in Vitest, Zod config, append-only migrations.
+Everything in `anti-drift.md` marked nest-service: boundaries, depcruise layer and tree rules, the five custom rules, vendor SDK fences, pino fence, decorator metadata in Rstest with the `di-metadata` canary, Zod config, append-only migrations.
 
 ## Rules copied
 

@@ -696,7 +696,7 @@ The exception is integration tests that wire multiple modules and verify they bo
 
 ### Framework
 
-Vitest, not Jest. Use `@nestjs/testing` for module setup. Reasons: Vitest is faster, has better ESM support, and the stack is already on modern TS tooling.
+Rstest (`@rstest/core`, Jest-compatible API, imports from `@rstest/core`), not Jest or Vitest. Use `@nestjs/testing` for module setup. `rstest.config.ts` sets `source.decorators.version: 'legacy'` so SWC emits `design:paramtypes` the way tsx does in prod; `src/backend/core/di-metadata.test.ts` is the canary that proves it on every run. Do not delete that file.
 
 ### What to Test (and What Not To)
 

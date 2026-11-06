@@ -1,6 +1,6 @@
 import { resolve } from 'node:path';
 import Database from 'better-sqlite3';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from '@rstest/core';
 import { MigrationRunner } from './migration-runner.js';
 
 describe('MigrationRunner', () => {

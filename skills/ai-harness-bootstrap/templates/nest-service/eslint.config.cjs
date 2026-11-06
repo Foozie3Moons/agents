@@ -27,7 +27,7 @@ const BACKEND = ['src/backend/**/*.ts', 'src/backend-for-frontend/**/*.ts'];
 
 module.exports = tseslint.config(
   {
-    ignores: ['dist/**', 'coverage/**', 'src/frontend/**', 'eslint-rules/**', 'eslint.config.cjs', '.dependency-cruiser.cjs', 'vitest.config.ts'],
+    ignores: ['dist/**', 'coverage/**', 'src/frontend/**', 'eslint-rules/**', 'eslint.config.cjs', '.dependency-cruiser.cjs', 'rstest.config.ts'],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,

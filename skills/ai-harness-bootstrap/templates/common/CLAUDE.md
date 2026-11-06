@@ -15,7 +15,7 @@
 ## Commands
 
 - `pnpm build` — typecheck and build
-- `pnpm test` — Vitest
+- `pnpm test` — Rstest
 - `pnpm lint` — ESLint (custom rules in `eslint-rules/`<, layering via eslint-plugin-boundaries>)
 - `pnpm depcruise` — dependency-cruiser (cycles, orphans<, layer and tree edges>); `pnpm depcruise:graph` writes `docs/dependency-graph.svg`
 - `pnpm check` — all of the above, what CI runs

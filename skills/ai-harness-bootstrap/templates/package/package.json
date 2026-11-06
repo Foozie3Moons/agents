@@ -4,7 +4,9 @@
   "description": "",
   "type": "module",
   "license": "UNLICENSED",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -14,8 +16,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run --passWithNoTests",
-    "test:watch": "vitest",
+    "test": "rstest",
+    "test:watch": "rstest --watch",
     "lint": "eslint . --max-warnings 0",
     "depcruise": "depcruise src --config .dependency-cruiser.cjs",
     "depcruise:graph": "depcruise src --config .dependency-cruiser.cjs --output-type dot | dot -T svg > docs/dependency-graph.svg",
@@ -23,11 +25,11 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@rstest/core": "^0.12.0",
     "@types/node": "^22.0.0",
     "dependency-cruiser": "^18.7.0",
     "eslint": "^10.1.0",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.58.0",
-    "vitest": "~3.2.4"
+    "typescript-eslint": "^8.58.0"
   }
 }

@@ -12,8 +12,8 @@
     "build:frontend": "pnpm --dir src/frontend build",
     "typecheck": "tsc --noEmit && pnpm --dir src/frontend typecheck",
     "start": "node dist/src/backend/main.js",
-    "test": "vitest run --passWithNoTests && pnpm --dir src/frontend test",
-    "test:watch": "vitest",
+    "test": "rstest && pnpm --dir src/frontend test",
+    "test:watch": "rstest --watch",
     "lint": "eslint . --max-warnings 0 && pnpm --dir src/frontend lint && pnpm --dir src/frontend lint:css",
     "depcruise": "depcruise src --config .dependency-cruiser.cjs && pnpm --dir src/frontend depcruise",
     "depcruise:graph": "depcruise src --config .dependency-cruiser.cjs --output-type dot | dot -T svg > docs/dependency-graph.svg",
@@ -34,7 +34,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@nestjs/testing": "^11.1.17",
-    "@swc/core": "^1.15.24",
+    "@rstest/core": "^0.12.0",
     "@types/better-sqlite3": "~7.6.13",
     "@types/express": "^5.0.6",
     "@types/node": "^22.0.0",
@@ -45,11 +45,16 @@
     "eslint-plugin-boundaries": "^6.0.2",
     "tsx": "~4.21.0",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.58.0",
-    "unplugin-swc": "^1.5.9",
-    "vitest": "~3.2.4"
+    "typescript-eslint": "^8.58.0"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["@nestjs/core", "@rspack/binding", "@swc/core", "better-sqlite3", "core-js", "esbuild", "msw", "unrs-resolver"]
+    "onlyBuiltDependencies": [
+      "@nestjs/core",
+      "@rspack/binding",
+      "better-sqlite3",
+      "core-js",
+      "msw",
+      "unrs-resolver"
+    ]
   }
 }

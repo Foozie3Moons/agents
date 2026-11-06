@@ -28,7 +28,7 @@ Every guard, what it catches, where it lives, and which kinds carry it. A rule t
 | `local/no-cross-domain-writes` | mutating call on another domain's service (only under `src/backend/domains/`) | `eslint-rules/no-cross-domain-writes.cjs` | nest-service, bff-app |
 | `no-restricted-imports` vendor SDK fences | an SDK imported outside its gateway (bypasses redaction, usage recording) | `VENDOR_SDK_FENCES` + `GATEWAY_FILES` in `eslint.config.cjs` | nest-service, bff-app |
 | `no-restricted-imports` nestjs-pino | `@InjectPinoLogger` (boot crash when `forFeature` is forgotten) | `eslint.config.cjs` | nest-service, bff-app |
-| `unplugin-swc` in Vitest | tests that pass under esbuild but fail at boot because `design:paramtypes` was not emitted | `vitest.config.ts` | nest-service, bff-app |
+| `source.decorators.version: 'legacy'` in Rstest + `core/di-metadata.test.ts` canary | tests that pass because `design:paramtypes` was not emitted while boot fails on a missing `@Inject()`; the canary turns red if the runner ever stops emitting it | `rstest.config.ts`, `src/backend/core/di-metadata.test.ts` | nest-service, bff-app |
 | Zod config schema, fail-closed at boot | missing or malformed env discovered at request time | `core/config/config.schema.ts` | nest-service, bff-app |
 | migrations append-only, tests seed from the same files | schema drift between prod and tests | `core/database/migration-runner.ts` | nest-service, bff-app |
 | React Query hooks allowlist | `useQuery` in a component instead of `api/use*.ts` | frontend `eslint.config.cjs` | react-app, bff-app |
@@ -57,7 +57,7 @@ After scaffolding, prove each guard class fires once, then delete the violation.
 
 - all: `export * from './x.js'` in an `index.ts` → ESLint error and the hook blocks the write; a two-file import cycle → `no-circular`.
 - package: `process.env.X` → `no-restricted-properties`.
-- nest-service, bff-app: a controller importing a repository → `boundaries/dependencies` and `api-must-not-skip-to-data-access`; a constructor param without `@Inject()` → `local/require-inject-decorator`; `` prepare(`... ${id}`) `` → `local/no-interpolated-sql`; `process.env` in a service → `local/no-process-env-outside-config`.
+- nest-service, bff-app: delete `source.decorators` from `rstest.config.ts` → `di-metadata.test.ts` fails to parse `@Inject()` (restore it); a controller importing a repository → `boundaries/dependencies` and `api-must-not-skip-to-data-access`; a constructor param without `@Inject()` → `local/require-inject-decorator`; `` prepare(`... ${id}`) `` → `local/no-interpolated-sql`; `process.env` in a service → `local/no-process-env-outside-config`.
 - react-app, bff-app: `useQuery` in a molecule → `no-restricted-imports`; `useMemo` anywhere → `no-restricted-imports`; `fetch()` in a component → `no-restricted-syntax`; `style={{ padding: 4 }}` → `no-restricted-syntax`; `.container {}` in a module → `lint:css`; a molecule importing a page → `molecules-are-presentational`.
 
 ## Knowledge (proposed convention)

@@ -6,7 +6,7 @@ const tseslint = require('typescript-eslint');
 const eslint = require('@eslint/js');
 
 module.exports = tseslint.config(
-  { ignores: ['dist/**', 'coverage/**', 'eslint.config.cjs', '.dependency-cruiser.cjs', 'vitest.config.ts', 'eslint-rules/**'] },
+  { ignores: ['dist/**', 'coverage/**', 'eslint.config.cjs', '.dependency-cruiser.cjs', 'rstest.config.ts', 'eslint-rules/**'] },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   {

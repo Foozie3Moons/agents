@@ -33,7 +33,7 @@ Before any commit: no hardcoded secrets, all user input validated, error message
 
 ## Testing
 
-Vitest for Node code (Nest, libraries); Rstest for the frontend. Co-locate tests with source. The standard is: every behavior a task's acceptance criteria names has a test that would fail if it broke. Do not write tests for module shells, DTO definitions, decorator metadata, or generated code. Write the test before the logic when adding logic to a service, repository, or component; skip the ritual for scaffolding.
+Rstest everywhere (imports from `@rstest/core`). Co-locate tests with source. The standard is: every behavior a task's acceptance criteria names has a test that would fail if it broke. Do not write tests for module shells, DTO definitions, decorator metadata, or generated code. Write the test before the logic when adding logic to a service, repository, or component; skip the ritual for scaffolding.
 
 ## Git
 
