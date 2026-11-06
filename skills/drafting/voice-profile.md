@@ -22,7 +22,7 @@ How the user's writing sounds. An engineer talking to a peer.
 ## Structure by channel
 
 - **Slack, LinkedIn, Discord:** two or three short paragraphs, no headers. Slack status updates use bold labels followed by a colon, backticked identifiers, no nested bold.
-- **MR and PR descriptions:** see `checklists/merge-request.md`.
+- **Change request descriptions (MR, PR):** see `checklists/change-request.md`.
 - **Blog:** first-person narrative arc, sections, concrete tooling details, an explicit downsides section.
 
 ## Hard rules
@@ -36,7 +36,7 @@ How the user's writing sounds. An engineer talking to a peer.
 
 ## Calibration samples
 
-Paste two to five real samples here (a Slack update, an MR description, a blog paragraph). Samples work better than descriptions. Keep them short. Drop a sample when it no longer sounds like them.
+Paste two to five real samples here (a Slack update, a change request description, a blog paragraph). Samples work better than descriptions. Keep them short. Drop a sample when it no longer sounds like them.
 
 ```
 [sample 1]

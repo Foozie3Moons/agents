@@ -1,6 +1,6 @@
-# Checklist: merge request / pull request description
+# Checklist: change request description
 
-Applies to GitLab merge requests and GitHub pull requests alike.
+Covers GitLab merge requests, GitHub pull requests, and anything else that proposes a change for review.
 
 The source is the diff, the ticket, and whatever the user said about the change. Everything in the description has to come from one of those.
 

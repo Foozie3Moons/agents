@@ -17,7 +17,7 @@ That covers:
 
 ## Other people
 
-When the source contains other people's statements (a pasted Slack thread, a ticket comment, an MR review), those belong to those people.
+When the source contains other people's statements (a pasted Slack thread, a ticket comment, a code review comment), those belong to those people.
 
 - Name them when the draft repeats what they said: "Priya said the cutover moved to Q2".
 - Do not fold someone else's point into their position unless they said they agree.

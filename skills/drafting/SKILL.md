@@ -1,6 +1,6 @@
 ---
 name: drafting
-description: Use when asked to draft, write, or rewrite anything that will be sent or published under the user's name (Slack messages, merge request descriptions, blog posts, LinkedIn posts or replies, emails, Discord posts). Not for code, comments, commit messages, or answers in chat.
+description: Use when asked to draft, write, or rewrite anything that will be sent or published under the user's name (Slack messages, merge request or pull request descriptions, blog posts, LinkedIn posts or replies, emails, Discord posts). Not for code, comments, commit messages, or answers in chat.
 ---
 
 # Drafting
@@ -17,7 +17,7 @@ The user will send the draft as their own writing. It has to be true to what the
 
 ## Source material
 
-The source is whatever the user gave you: dictation, a pasted Slack thread, an MR diff, a ticket, notes. Every claim in the draft has to come from there. If a claim does not, remove it.
+The source is whatever the user gave you: dictation, a pasted Slack thread, a diff, a ticket, notes. Every claim in the draft has to come from there. If a claim does not, remove it.
 
 Other people's words in a pasted thread stay theirs. Do not restate someone else's point as theirs.
 

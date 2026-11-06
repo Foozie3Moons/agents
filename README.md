@@ -13,7 +13,7 @@ skills/
     banned-words.md       vocabulary to strip from drafts
     tics.md               patterns that read as AI-generated
     checklists/
-      merge-request.md      MRs and PRs
+      change-request.md     merge requests, pull requests
       slack-message.md
       discord-post.md
       linkedin-post.md
