@@ -1,0 +1,5 @@
+{
+  "name": "engineering",
+  "version": "0.1.0",
+  "description": "Stack-independent engineering agents: architect (discovery to spec) and cleanup-engineer (delete-only)."
+}

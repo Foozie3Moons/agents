@@ -1,0 +1,5 @@
+packages:
+  - .
+
+# Supply-chain guard: a freshly published version waits a week before pnpm will resolve it.
+minimumReleaseAge: 10080

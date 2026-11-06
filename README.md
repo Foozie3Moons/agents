@@ -1,28 +1,42 @@
 # agents
 
-Personal skills and agent-specific config.
+Personal skills, plugins and agent-specific config.
 
 ## Layout
 
 ```
+plugins/
+  bff/                      Claude Code plugin: NestJS BFF + React
+    agents/                 backend-engineer, frontend-engineer
+    rules/                  common, backend, frontend (copied into repos by the bootstrap skill)
+  engineering/              Claude Code plugin: architect, cleanup-engineer
 skills/
-  drafting/
-    SKILL.md              entry point for anything I send under my name
-    attribution.md        never attribute to me what I did not say
-    voice-profile.md      how my writing sounds
-    banned-words.md       vocabulary to strip from drafts
-    tics.md               patterns that read as AI-generated
-    checklists/
-      change-request.md     merge requests, pull requests
-      slack-message.md
-      discord-post.md
-      linkedin-post.md
+  drafting/                 anything sent under my name
+    SKILL.md, attribution.md, voice-profile.md, banned-words.md, tics.md, checklists/
+  ai-harness-bootstrap/     new repo with every guard in place from the first commit
+    SKILL.md                the flow
+    anti-drift.md           every guard, what it catches, where it lives, how to prove it fires
+    kinds/                  package, nest-service, react-app, bff-app
+    scripts/scaffold.sh     layer assembly
+    templates/              common, nest-common, package, nest-service, react-app, bff-app
 ```
 
 ## Install
 
-Symlink a skill into whichever harness needs it:
+Skills: symlink into whichever harness needs them.
 
 ```
 ln -s "$(pwd)/skills/drafting" ~/.claude/skills/drafting
+ln -s "$(pwd)/skills/ai-harness-bootstrap" ~/.claude/skills/ai-harness-bootstrap
 ```
+
+Plugins: add this repo as a local marketplace in Claude Code and install `bff` and `engineering`, or symlink the agent files into `~/.claude/agents/`.
+
+## Bootstrap a repo
+
+```
+bash skills/ai-harness-bootstrap/scripts/scaffold.sh bff-app ~/code/new-app
+cd ~/code/new-app && pnpm install && pnpm check
+```
+
+Then follow `skills/ai-harness-bootstrap/SKILL.md` for naming, `CLAUDE.md`, and the smoke test that proves each guard fires.

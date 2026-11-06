@@ -1,0 +1,14 @@
+.statusBadge {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  font-family: var(--font-mono);
+}
+
+.statusBadge[data-tone='good'] {
+  color: var(--color-fg);
+}
+
+.statusBadge[data-tone='bad'] {
+  color: var(--color-fg);
+  text-decoration: underline;
+}

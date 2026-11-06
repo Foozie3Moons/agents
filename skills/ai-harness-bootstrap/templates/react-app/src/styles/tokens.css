@@ -1,0 +1,15 @@
+/* Design tokens. Pinned in docs/design-system.md; nothing else defines a color,
+   spacing or type value. Placeholders below are deliberately few: pick the real
+   ones before building a surface, do not invent them per component. */
+:root {
+  --font-body: "TODO", sans-serif;
+  --font-mono: "TODO", monospace;
+
+  --color-bg: #ffffff;
+  --color-fg: #111111;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+}
