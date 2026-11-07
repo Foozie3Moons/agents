@@ -1,0 +1,35 @@
+{
+  "name": "@scope/package-name",
+  "version": "0.0.0",
+  "description": "",
+  "type": "module",
+  "license": "UNLICENSED",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "rstest",
+    "test:watch": "rstest --watch",
+    "lint": "eslint . --max-warnings 0",
+    "depcruise": "depcruise src --config .dependency-cruiser.cjs",
+    "depcruise:graph": "depcruise src --config .dependency-cruiser.cjs --output-type dot | dot -T svg > docs/dependency-graph.svg",
+    "check": "pnpm typecheck && pnpm lint && pnpm depcruise && pnpm test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@rstest/core": "^0.12.0",
+    "@types/node": "^22.0.0",
+    "dependency-cruiser": "^18.7.0",
+    "eslint": "^10.1.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.58.0"
+  }
+}

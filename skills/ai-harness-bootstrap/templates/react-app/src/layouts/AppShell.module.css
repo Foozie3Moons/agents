@@ -1,0 +1,10 @@
+.appShell {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+}
+
+.appMain {
+  padding: var(--space-4);
+}

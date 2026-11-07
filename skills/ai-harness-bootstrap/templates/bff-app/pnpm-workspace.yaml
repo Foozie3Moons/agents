@@ -1,0 +1,8 @@
+packages:
+  - .
+  - src/frontend
+
+minimumReleaseAge: 10080
+minimumReleaseAgeExclude:
+  - storybook
+  - '@storybook/*'
