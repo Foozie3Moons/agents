@@ -19,6 +19,8 @@ skills/
     kinds/                  package, nest-service, react-app, bff-app
     scripts/scaffold.sh     layer assembly
     templates/              common, nest-common, package, nest-service, react-app, bff-app
+  swiftui-pro/              SwiftUI review checklist, copied from Paul Hudson (see UPSTREAM.md)
+  write-swift/              modern Swift language guide, copied from Emil Kowalski (see UPSTREAM.md)
 ```
 
 ## Install
@@ -28,6 +30,8 @@ Skills: symlink into whichever harness needs them.
 ```
 ln -s "$(pwd)/skills/drafting" ~/.claude/skills/drafting
 ln -s "$(pwd)/skills/ai-harness-bootstrap" ~/.claude/skills/ai-harness-bootstrap
+ln -s "$(pwd)/skills/swiftui-pro" ~/.claude/skills/swiftui-pro
+ln -s "$(pwd)/skills/write-swift" ~/.claude/skills/write-swift
 ```
 
 Plugins: add this repo as a local marketplace in Claude Code and install `bff` and `engineering`, or symlink the agent files into `~/.claude/agents/`.
