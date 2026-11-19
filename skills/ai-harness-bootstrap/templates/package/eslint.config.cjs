@@ -6,7 +6,16 @@ const tseslint = require('typescript-eslint');
 const eslint = require('@eslint/js');
 
 module.exports = tseslint.config(
-  { ignores: ['dist/**', 'coverage/**', 'eslint.config.cjs', '.dependency-cruiser.cjs', 'rstest.config.ts', 'eslint-rules/**'] },
+  {
+    ignores: [
+      'dist/**',
+      'coverage/**',
+      'eslint.config.cjs',
+      '.dependency-cruiser.cjs',
+      'rstest.config.ts',
+      'eslint-rules/**',
+    ],
+  },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   {
@@ -16,15 +25,24 @@ module.exports = tseslint.config(
     rules: {
       'no-console': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/no-unused-vars': ['error', {
-        argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_',
-      }],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
       '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
       // A library never reads the environment; the consumer passes config in.
-      'no-restricted-properties': ['error', {
-        object: 'process', property: 'env',
-        message: 'Libraries do not read process.env. Accept config through the constructor or function argument.',
-      }],
+      'no-restricted-properties': [
+        'error',
+        {
+          object: 'process',
+          property: 'env',
+          message: 'Libraries do not read process.env. Accept config through the constructor or function argument.',
+        },
+      ],
     },
   },
   {
@@ -36,10 +54,13 @@ module.exports = tseslint.config(
     // Any other index.ts is a barrel and is banned outright.
     files: ['**/index.ts'],
     rules: {
-      'no-restricted-syntax': ['error', {
-        selector: 'ExportAllDeclaration',
-        message: 'export * is forbidden. List the public API as named exports.',
-      }],
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: 'ExportAllDeclaration',
+          message: 'export * is forbidden. List the public API as named exports.',
+        },
+      ],
     },
   },
 );

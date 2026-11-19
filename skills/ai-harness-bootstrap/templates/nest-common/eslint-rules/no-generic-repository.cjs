@@ -30,8 +30,7 @@ module.exports = {
   meta: {
     type: 'problem',
     docs: {
-      description:
-        'Ban generic Repository<T> imports and implements clauses in Nest modules.',
+      description: 'Ban generic Repository<T> imports and implements clauses in Nest modules.',
       recommended: true,
     },
     messages: {
@@ -56,10 +55,7 @@ module.exports = {
           if (specifier.type !== 'ImportSpecifier') continue;
 
           // specifier.imported is the name as it appears in the source module.
-          const importedName =
-            specifier.imported.type === 'Identifier'
-              ? specifier.imported.name
-              : null;
+          const importedName = specifier.imported.type === 'Identifier' ? specifier.imported.name : null;
 
           if (importedName === 'Repository') {
             context.report({ node: specifier, messageId: 'noGenericRepository' });

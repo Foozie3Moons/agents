@@ -20,9 +20,29 @@
 'use strict';
 
 const MUTATING_PREFIXES = [
-  'create', 'insert', 'update', 'delete', 'remove', 'set', 'add', 'mark',
-  'restock', 'record', 'archive', 'patch', 'upsert', 'save', 'clear', 'toggle',
-  'write', 'append', 'tombstone', 'restore', 'reset', 'increment', 'decrement',
+  'create',
+  'insert',
+  'update',
+  'delete',
+  'remove',
+  'set',
+  'add',
+  'mark',
+  'restock',
+  'record',
+  'archive',
+  'patch',
+  'upsert',
+  'save',
+  'clear',
+  'toggle',
+  'write',
+  'append',
+  'tombstone',
+  'restore',
+  'reset',
+  'increment',
+  'decrement',
 ];
 
 const DOMAIN_RE = /[\\/]src[\\/]backend[\\/]domains[\\/]([^\\/]+)[\\/]application[\\/]/;
@@ -37,7 +57,7 @@ module.exports = {
   meta: {
     type: 'problem',
     docs: {
-      description: 'application services never call mutating methods on another domain\'s service',
+      description: "application services never call mutating methods on another domain's service",
     },
     schema: [],
     messages: {

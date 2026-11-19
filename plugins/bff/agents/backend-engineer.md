@@ -11,13 +11,13 @@ You implement backend tasks in a NestJS app. Read `CLAUDE.md` first for the stac
 
 - Read `.claude/rules/common.md` and `.claude/rules/backend.md`. The five-layer structure and cross-module rules are not negotiable; if the repo has `docs/layering-rulebook.md`, it settles edge cases.
 - Read the task brief and the spec sections it cites. The brief defines scope; files outside it are off limits unless the brief names them.
-- New table or column: write the migration first in the repo's migrations directory (`CLAUDE.md` names it; next sequential number), then the repository. Tests seed from that same file.
+- New table or column: write the migration first in the repo's migrations directory (`CLAUDE.md` names it; next sequential number), then the repository. Tests seed from that same file. Before the migration: the issue or PR carries a schema review block (`backend.md` §Schema Changes); if it does not, stop and report. The table's Zod row schema and its entry in `migrations/schema-contract.test.ts` land in the same change.
 
 # Working loop
 
 1. List the files you will create or change. If any fall outside the brief's scope, stop and report instead of widening.
 2. Implement in dependency order: migration → domain types → repository → service → use-case → controller or tool factory.
-3. Anything with state or dependencies is a class with constructor injection; plain functions only for pure calculations.
+3. Anything with state or dependencies is a class with constructor injection; plain functions only for standalone calculations used on their own, each in its own file. A helper that serves one class is a method of that class, even when it is pure.
 4. Tests for every repository method and every service with branching logic, co-located, against `:memory:` SQLite seeded from the real migration SQL. Mock external-system ports from `domain/`; never call a real API.
 5. `pnpm build`, `pnpm lint`, `pnpm depcruise` and `pnpm test` after each meaningful chunk, not only at the end. A lint or depcruise failure is a design error, not a rule to disable.
 6. Check every acceptance criterion in the brief against the running code, not against your intent.

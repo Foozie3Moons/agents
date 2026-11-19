@@ -15,7 +15,8 @@ Every guard, what it catches, where it lives, and which kinds carry it. A rule t
 | `no-test-imports-in-source`, `not-to-unresolvable` | test code in prod, broken imports | `.dependency-cruiser.cjs` | all |
 | `minimumReleaseAge: 10080` | a package version published less than a week ago (supply chain) | `pnpm-workspace.yaml` | all but package |
 | `.tool-versions` + `setup-node` reading it | Node/pnpm drift between laptop and CI | `.tool-versions`, `ci.yml` | all |
-| CI: build, lint, depcruise, test on every PR | everything above, enforced on the merge | `.github/workflows/ci.yml` | all |
+| Prettier (`format:check`) + PostToolUse hook `format-edited-file.sh` | formatting drift between agents and sessions; diffs that are mostly reformatting. The hook formats each edited file and never blocks; CI is the gate | `.prettierrc.json`, `.prettierignore`, `.claude/settings.json`, `.claude/scripts/` | all |
+| CI: build, format, lint, depcruise, test on every PR | everything above, enforced on the merge | `.github/workflows/ci.yml` | all |
 | `no-restricted-properties process.env` | a library reading the environment | package `eslint.config.cjs` | package |
 | `index-is-not-imported-internally` | internals importing the public entry | package `.dependency-cruiser.cjs` | package |
 | `eslint-plugin-boundaries` element rules | per-file layer edges: api → use-case → application → data-access → domain; core/transport/BFF tables | `eslint.config.cjs` | nest-service, bff-app |
@@ -26,11 +27,13 @@ Every guard, what it catches, where it lives, and which kinds carry it. A rule t
 | `local/no-interpolated-sql` | `${}` inside `prepare()` / `exec()` SQL | `eslint-rules/no-interpolated-sql.cjs` | nest-service, bff-app |
 | `local/no-process-env-outside-config` | env read anywhere but `core/config/` | `eslint-rules/no-process-env-outside-config.cjs` | nest-service, bff-app |
 | `local/no-cross-domain-writes` | mutating call on another domain's service (only under `src/backend/domains/`) | `eslint-rules/no-cross-domain-writes.cjs` | nest-service, bff-app |
+| `local/no-helper-beside-class` | a module-level function in a file that declares a class, exported or not (a misplaced method, or a standalone calculation that belongs in its own file) | `eslint-rules/no-helper-beside-class.cjs` | nest-service, bff-app |
 | `no-restricted-imports` vendor SDK fences | an SDK imported outside its gateway (bypasses redaction, usage recording) | `VENDOR_SDK_FENCES` + `GATEWAY_FILES` in `eslint.config.cjs` | nest-service, bff-app |
 | `no-restricted-imports` nestjs-pino | `@InjectPinoLogger` (boot crash when `forFeature` is forgotten) | `eslint.config.cjs` | nest-service, bff-app |
 | `source.decorators.version: 'legacy'` in Rstest + `core/di-metadata.test.ts` canary | tests that pass because `design:paramtypes` was not emitted while boot fails on a missing `@Inject()`; the canary turns red if the runner ever stops emitting it | `rstest.config.ts`, `src/backend/core/di-metadata.test.ts` | nest-service, bff-app |
 | Zod config schema, fail-closed at boot | missing or malformed env discovered at request time | `core/config/config.schema.ts` | nest-service, bff-app |
 | migrations append-only, tests seed from the same files | schema drift between prod and tests | `core/database/migration-runner.ts` | nest-service, bff-app |
+| `migrations/schema-contract.test.ts` | a table with no Zod row schema, schema keys and columns that differ, a nullable column whose schema rejects null | `migrations/`, `core/database/row-schema.ts` | nest-service, bff-app |
 | React Query hooks allowlist | `useQuery` in a component instead of `api/use*.ts` | frontend `eslint.config.cjs` | react-app, bff-app |
 | `QueryClient` / router constructor allowlists | a second client, a second router | frontend `eslint.config.cjs` | react-app, bff-app |
 | `fetch` / `XMLHttpRequest` / axios bans | network calls outside `api/httpClient.ts` | frontend `eslint.config.cjs` | react-app, bff-app |
@@ -45,7 +48,7 @@ Every guard, what it catches, where it lives, and which kinds carry it. A rule t
 
 ## Review-only (no mechanical guard yet)
 
-Listed so nobody assumes they are enforced: classes-with-state vs functions (`common.md` §Design), banned fonts and gradients, new frontend dependencies without a task brief, cohesion (second variant of an existing visual choice), "a use-case that composes one service". `/arch-drift-check` covers the ones it can reason about.
+Listed so nobody assumes they are enforced: classes-with-state vs functions outside Nest code (`common.md` §Design; Nest code has `no-helper-beside-class`), the schema review block before a migration (`backend.md` §Schema Changes), comments citing `docs/work/`, banned fonts and gradients, new frontend dependencies without a task brief, cohesion (second variant of an existing visual choice), "a use-case that composes one service". `/arch-drift-check` covers the ones it can reason about.
 
 ## Options-do-not-merge trap
 
@@ -55,12 +58,12 @@ ESLint flat config replaces a rule's options when a later block sets the same ru
 
 After scaffolding, prove each guard class fires once, then delete the violation. Minimum set per kind:
 
-- all: `export * from './x.js'` in an `index.ts` → ESLint error and the hook blocks the write; a two-file import cycle → `no-circular`.
+- all: a double-quoted string in a `.ts` file → `format:check`; `export * from './x.js'` in an `index.ts` → ESLint error and the hook blocks the write; a two-file import cycle → `no-circular`.
 - package: `process.env.X` → `no-restricted-properties`.
-- nest-service, bff-app: delete `source.decorators` from `rstest.config.ts` → `di-metadata.test.ts` fails to parse `@Inject()` (restore it); a controller importing a repository → `boundaries/dependencies` and `api-must-not-skip-to-data-access`; a constructor param without `@Inject()` → `local/require-inject-decorator`; `` prepare(`... ${id}`) `` → `local/no-interpolated-sql`; `process.env` in a service → `local/no-process-env-outside-config`.
+- nest-service, bff-app: a `function helper() {}` above a service class → `local/no-helper-beside-class`; a column added in a migration without its row schema key → `schema-contract.test.ts`; delete `source.decorators` from `rstest.config.ts` → `di-metadata.test.ts` fails to parse `@Inject()` (restore it); a controller importing a repository → `boundaries/dependencies` and `api-must-not-skip-to-data-access`; a constructor param without `@Inject()` → `local/require-inject-decorator`; `` prepare(`... ${id}`) `` → `local/no-interpolated-sql`; `process.env` in a service → `local/no-process-env-outside-config`.
 - react-app, bff-app: `useQuery` in a molecule → `no-restricted-imports`; `useMemo` anywhere → `no-restricted-imports`; `fetch()` in a component → `no-restricted-syntax`; `style={{ padding: 4 }}` → `no-restricted-syntax`; `.container {}` in a module → `lint:css`; a molecule importing a page → `molecules-are-presentational`.
 
-## Knowledge (proposed convention)
+## Knowledge
 
 Domain knowledge attaches to code, not to a job title. The role is an agent; the knowledge is a path-scoped rule; the procedure is a skill; the why is an ADR.
 

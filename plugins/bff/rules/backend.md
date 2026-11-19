@@ -7,7 +7,7 @@ paths:
 
 NestJS, better-sqlite3 (or Postgres behind the same repository shape). Extends `common.md`; wins on conflict. Normative sources, when the repo has them: `docs/layering-rulebook.md` and `docs/decisions/ADR-*.md`. Until the repo writes those, this file is the rule.
 
-Mechanical enforcement: `eslint-plugin-boundaries` (layer edges), `eslint-rules/*.cjs` (repository shape, `@Inject`, SQL interpolation, env access, cross-domain writes), dependency-cruiser (cycles, orphans, cross-tree edges). Run `pnpm lint` and `pnpm depcruise`.
+Mechanical enforcement: `eslint-plugin-boundaries` (layer edges), `eslint-rules/*.cjs` (repository shape, `@Inject`, SQL interpolation, env access, cross-domain writes, no module-level functions beside a class), dependency-cruiser (cycles, orphans, cross-tree edges). Run `pnpm lint` and `pnpm depcruise`.
 
 ## Layering
 
@@ -215,7 +215,7 @@ export class StaplesController {
 
 ### Line Length
 
-100 characters. Constructor parameter lists often exceed this — break onto multiple lines with one parameter per line.
+120 characters, set by `printWidth` in `.prettierrc.json`. Constructor parameter lists often exceed this — break onto multiple lines with one parameter per line.
 
 ### Logger
 
@@ -494,6 +494,14 @@ async getActive() {
 ### No ORM
 
 better-sqlite3 only. Never introduce TypeORM, Prisma, MikroORM, Drizzle, or any other ORM. The repository pattern above is the abstraction.
+
+### Row Schemas
+
+Every table has one canonical Zod row schema whose keys are exactly its columns, and repositories parse every row they read (`Row.parse`, `parseOptionalRow`, `parseRows` from `core/database/row-schema.ts`), never `as XRow`. A query that selects fewer columns or adds derived ones uses a schema built from the canonical one (`.omit`, `.pick`, `.extend`). `migrations/schema-contract.test.ts` registers each schema and fails when a table has none, when keys and columns differ, or when a nullable column's schema rejects null. A new table or column lands with its schema change and its registry entry in the same PR.
+
+### Schema Changes
+
+No migration is written until the issue or PR carries a schema review block. It opens with the modeling question: what is a row in this table, does the new data mean the same thing, and which columns would always be null for it. Every claim in the block is marked checked (against the schema or code) or unchecked, and an unchecked claim cannot back a recommendation.
 
 ### Service Layer
 

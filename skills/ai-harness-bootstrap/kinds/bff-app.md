@@ -18,7 +18,7 @@ Root `tsconfig.json` and root ESLint exclude `src/frontend`; the frontend is lin
 
 ## Scripts
 
-Root: `dev` (both, via concurrently), `dev:backend`, `dev:frontend`, `build`, `build:backend`, `build:frontend`, `typecheck`, `start`, `test`, `lint`, `depcruise`, `check`. Each root script fans out to `pnpm --dir src/frontend <script>`.
+Root: `dev` (both, via concurrently), `dev:backend`, `dev:frontend`, `build`, `build:backend`, `build:frontend`, `typecheck`, `start`, `test`, `format`, `format:check` (root only; Prettier covers both trees), `lint`, `depcruise`, `check`. Each root script fans out to `pnpm --dir src/frontend <script>`.
 
 ## Guards
 

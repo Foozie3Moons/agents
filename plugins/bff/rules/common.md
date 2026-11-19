@@ -4,7 +4,7 @@ Apply everywhere. `backend.md` and `frontend.md` add tree-specific rules and win
 
 ## Design: DDD and OOP
 
-Anything with state or dependencies is a class. Plain functions are for pure calculations only. This holds everywhere, not just where an example happens to show it: clients, services, engines, repositories, gateways, loaders, schedulers, and domain models are classes; a formatter that maps input to output with no collaborators is a function.
+Anything with state or dependencies is a class. Plain functions are for standalone calculations used on their own, not tied to any one class. A helper that serves one class is a method of that class (usually private), even when it is pure; a rule about an entity's own data is a method on the entity. This holds everywhere, not just where an example happens to show it: clients, services, engines, repositories, gateways, loaders, schedulers, mappers and domain models are classes, and a module-level function next to a class it alone serves is a misplaced method. ESLint enforces this in Nest code (`local/no-helper-beside-class`): a file that declares a class declares no module-level functions, exported or not, so a standalone calculation lives in its own file.
 
 - Each module is a self-contained bounded context with explicit boundaries. Other modules reach it only through its published application services and domain types.
 - Accept dependencies through the constructor; never construct a collaborator inside the class. In Nest that is constructor injection with `@Inject()` and `useClass` providers, which also makes an override a subclass that replaces one method.
@@ -24,6 +24,8 @@ Anything with state or dependencies is a class. Plain functions are for pure cal
 - Errors are handled explicitly at every level, never swallowed. User-facing messages are friendly; server logs carry the detail.
 - No `any`. Use `unknown` and narrow, or isolate the untyped surface in one gateway file.
 - No `console.log` outside scripts and tests. ESLint enforces `no-console`.
+- Comments carry their own reason. Do not cite `docs/work/` or a spec's section and row numbers: the working docs are deleted when the feature merges, and the citation then points at nothing. ADRs, runbooks and rules can be cited.
+- Prettier formats everything (`.prettierrc.json`: single quotes, 120 columns, trailing commas). A PostToolUse hook formats each file an agent edits; `pnpm format:check` is the gate in CI. Do not hand-format against it.
 - No barrel files (`index.ts` re-exports). Import from the source file. ESLint enforces.
 - Named domain methods on repositories, never generic CRUD (`findAll`, `findById`, `create`, `update`, `delete`). ESLint enforces for Nest code.
 

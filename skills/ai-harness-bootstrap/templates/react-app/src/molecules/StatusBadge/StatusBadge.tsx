@@ -8,7 +8,7 @@ interface StatusBadgeProps {
 // Molecule: props in, markup out. State-driven styling through data-*, not style={}.
 export function StatusBadge({ label, tone }: StatusBadgeProps) {
   return (
-    <span className={styles.statusBadge} data-tone={tone} role="status">
+    <span className={styles.statusBadge} data-tone={tone} role='status'>
       {label}
     </span>
   );

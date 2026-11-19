@@ -21,7 +21,14 @@ module.exports = {
       comment: 'A source file nothing imports is dead or mis-wired.',
       from: {
         orphan: true,
-        pathNot: ['\\.d\\.ts$', TEST, '^src/backend/main\\.ts$', '\\.module\\.ts$', '^src/frontend/src/main\\.tsx$', '^src/frontend/(\\.storybook/|.*\\.config\\.(ts|cjs)$|rstest\\.setup\\.ts$|\\.dependency-cruiser\\.cjs$)'],
+        pathNot: [
+          '\\.d\\.ts$',
+          TEST,
+          '^src/backend/main\\.ts$',
+          '\\.module\\.ts$',
+          '^src/frontend/src/main\\.tsx$',
+          '^src/frontend/(\\.storybook/|.*\\.config\\.(ts|cjs)$|rstest\\.setup\\.ts$|\\.dependency-cruiser\\.cjs$)',
+        ],
       },
       to: {},
     },
@@ -68,7 +75,10 @@ module.exports = {
       severity: 'error',
       comment: '§4.1: transports dispatch into api/ and may import core/ only.',
       from: { path: '^src/backend/transport/' },
-      to: { path: '^src/backend/(?!core/|transport/)[^/]+/(use-case|application|data-access|domain)/', dependencyTypesNot: ['type-only'] },
+      to: {
+        path: '^src/backend/(?!core/|transport/)[^/]+/(use-case|application|data-access|domain)/',
+        dependencyTypesNot: ['type-only'],
+      },
     },
     {
       name: 'modules-must-not-import-transport',
@@ -83,13 +93,21 @@ module.exports = {
       name: 'domain-imports-only-core-types',
       severity: 'error',
       from: { path: '/domain/', pathNot: TEST },
-      to: { path: '^src/backend', pathNot: ['/domain/', '^src/backend/core/types/', '^src/shared/'], dependencyTypesNot: ['type-only'] },
+      to: {
+        path: '^src/backend',
+        pathNot: ['/domain/', '^src/backend/core/types/', '^src/shared/'],
+        dependencyTypesNot: ['type-only'],
+      },
     },
     {
       name: 'data-access-imports-domain-or-core-only',
       severity: 'error',
       from: { path: '/data-access/', pathNot: TEST },
-      to: { path: '^src/backend', pathNot: ['/domain/', '/data-access/', '^src/backend/core/', '^src/shared/'], dependencyTypesNot: ['type-only'] },
+      to: {
+        path: '^src/backend',
+        pathNot: ['/domain/', '/data-access/', '^src/backend/core/', '^src/shared/'],
+        dependencyTypesNot: ['type-only'],
+      },
     },
     {
       name: 'application-must-not-import-api-or-use-case',
@@ -101,7 +119,8 @@ module.exports = {
     {
       name: 'api-must-not-skip-to-data-access',
       severity: 'error',
-      comment: 'No layer skipping: api/ reaches data-access/ through application/ even when the service is a one-line passthrough.',
+      comment:
+        'No layer skipping: api/ reaches data-access/ through application/ even when the service is a one-line passthrough.',
       from: { path: '/api/', pathNot: TEST },
       to: { path: '/data-access/', dependencyTypesNot: ['type-only'] },
     },
@@ -123,7 +142,8 @@ module.exports = {
     {
       name: 'domains-no-foreign-domain-data-access',
       severity: 'error',
-      comment: 'A domain under src/backend/domains/ never touches another domain\'s tables. No-op until that directory exists.',
+      comment:
+        "A domain under src/backend/domains/ never touches another domain's tables. No-op until that directory exists.",
       from: { path: '^src/backend/domains/([^/]+)/', pathNot: TEST },
       to: { path: '^src/backend/domains/([^/]+)/data-access/', pathNot: '^src/backend/domains/$1/' },
     },

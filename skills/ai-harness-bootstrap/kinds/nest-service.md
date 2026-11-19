@@ -10,7 +10,7 @@ src/backend/
   app.module.ts               composition root; the only importer of transport/ and the BFF tree
   core/
     config/                   APP_CONFIG token, Zod schema, the only process.env reader
-    database/                 DB_CONNECTION provider, MigrationRunner
+    database/                 DB_CONNECTION provider, MigrationRunner, row-schema.ts (parseRows, parseOptionalRow)
     logging/                  nestjs-pino LoggerModule
     types/                    pure types that domain/ may import
     di-metadata.test.ts       canary: the test compiler emits decorator metadata
@@ -19,15 +19,16 @@ src/backend/
     <module>.module.ts
     api/  use-case/  application/  data-access/  domain/
 migrations/                   NNN_name.sql, append-only; tests seed from these
+  schema-contract.test.ts     every table against its registered Zod row schema
 ```
 
 ## Scripts
 
-`dev` (tsx watch), `build`, `typecheck`, `start`, `test`, `lint`, `depcruise`, `depcruise:graph`, `check`.
+`dev` (tsx watch), `build`, `typecheck`, `start`, `test`, `format`, `format:check`, `lint`, `depcruise`, `depcruise:graph`, `check`.
 
 ## Guards
 
-Everything in `anti-drift.md` marked nest-service: boundaries, depcruise layer and tree rules, the five custom rules, vendor SDK fences, pino fence, decorator metadata in Rstest with the `di-metadata` canary, Zod config, append-only migrations.
+Everything in `anti-drift.md` marked nest-service: boundaries, depcruise layer and tree rules, the six custom rules, vendor SDK fences, pino fence, decorator metadata in Rstest with the `di-metadata` canary, Zod config, append-only migrations, the schema contract test, Prettier.
 
 ## Rules copied
 
@@ -36,7 +37,7 @@ Everything in `anti-drift.md` marked nest-service: boundaries, depcruise layer a
 ## First feature checklist
 
 - Each external system gets one gateway in `<module>/data-access/<system>.gateway.ts` and one entry in `VENDOR_SDK_FENCES` + `GATEWAY_FILES` the same day the SDK is added.
-- A new table is a new migration file, then the repository with prepared statements in the constructor, then the test against `:memory:`.
+- A new table starts with a schema review block on the issue or PR, then a new migration file, the Zod row schema with its entry in `migrations/schema-contract.test.ts`, the repository with prepared statements in the constructor (rows parsed, never cast), then the test against `:memory:`.
 - A new env var is a line in `config.schema.ts`, a line in `config.module.ts`, a line in `.env.example`.
 - A transport is wired in `main.ts` or `app.module.ts` only.
 - First ADR when the first real decision lands (why this storage, why this transport). Copy `docs/decisions/ADR-0000-template.md`.
