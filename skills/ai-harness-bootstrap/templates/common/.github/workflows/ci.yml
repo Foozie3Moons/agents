@@ -28,6 +28,9 @@ jobs:
       - name: Typecheck and build
         run: pnpm build
 
+      - name: Format (Prettier)
+        run: pnpm format:check
+
       - name: Lint (ESLint, custom rules, boundaries)
         run: pnpm lint
 

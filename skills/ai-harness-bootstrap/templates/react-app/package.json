@@ -16,7 +16,9 @@
     "depcruise:graph": "depcruise src --config .dependency-cruiser.cjs --output-type dot | dot -T svg > docs/dependency-graph.svg",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "check": "pnpm typecheck && pnpm lint && pnpm lint:css && pnpm depcruise && pnpm test"
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "pnpm typecheck && pnpm format:check && pnpm lint && pnpm lint:css && pnpm depcruise && pnpm test"
   },
   "dependencies": {
     "@tanstack/react-query": "~5.95.2",
@@ -40,12 +42,18 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "jsdom": "^29.0.2",
     "msw": "^2.7.0",
+    "prettier": "^3.9.10",
     "storybook": "~10.6.6",
     "storybook-react-rsbuild": "^3.6.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.58.0"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["@rspack/binding", "core-js", "msw", "unrs-resolver"]
+    "onlyBuiltDependencies": [
+      "@rspack/binding",
+      "core-js",
+      "msw",
+      "unrs-resolver"
+    ]
   }
 }

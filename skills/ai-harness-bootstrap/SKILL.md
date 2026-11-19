@@ -25,16 +25,16 @@ A new repo gets every mechanical guard on day 1, before the first feature. Retro
 - Never add `eslint-disable`, a depcruise `pathNot`, or a hook allowlist entry during bootstrap.
 - `.claude/rules/*.md` are copies from `plugins/bff/rules/`. Edit them in the plugin and re-copy; a repo-local edit is a fork and must say so at the top of the file.
 - Dependencies come from the templates' pinned ranges. Do not bump versions during bootstrap; that is its own PR with `pnpm check` as the gate.
-- Domain knowledge does not become an agent. A new domain gets `.claude/rules/<domain>.md` with `paths:` scoped to its tree, a `.claude/skills/<domain>-<verb>/` for procedures, and an ADR for the why. A new agent is warranted only for a different tool set or model (proposed convention, see `anti-drift.md` §Knowledge).
+- Domain knowledge does not become an agent. A new domain gets `.claude/rules/<domain>.md` with `paths:` scoped to its tree, a `.claude/skills/<domain>-<verb>/` for procedures, and an ADR for the why. A new agent is warranted only for a different tool set or model (see `anti-drift.md` §Knowledge).
 
 ## Templates
 
 ```
 templates/
-  common/        CLAUDE.md, .tool-versions, .github/workflows/ci.yml, .claude/{settings.json,scripts/guard-barrel-files.sh,skills/arch-drift-check}, docs/
-  nest-common/   eslint-rules/*.cjs (the five custom rules; Nest kinds only)
+  common/        CLAUDE.md, .tool-versions, .github/workflows/ci.yml, .prettierrc.json, .prettierignore, .claude/{settings.json,scripts/{guard-barrel-files,format-edited-file}.sh,skills/arch-drift-check}, docs/
+  nest-common/   eslint-rules/*.cjs (the six custom rules; Nest kinds only)
   package/       library: NodeNext ESM, exports map, named-export entry
-  nest-service/  Nest app: core/{config,database,logging}, migrations/, boundaries + depcruise layer rules
+  nest-service/  Nest app: core/{config,database,logging}, migrations/ with the schema contract test, boundaries + depcruise layer rules
   react-app/     Rsbuild + React 19 (compiler on) + React Query + CSS Modules + Storybook + Rstest/RTL; frontend lint and depcruise
   bff-app/       nest-service + react-app under src/frontend + src/backend-for-frontend + src/shared
 scripts/scaffold.sh   layer assembly

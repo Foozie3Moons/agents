@@ -1,0 +1,9 @@
+dist
+**/dist
+coverage
+node_modules
+pnpm-lock.yaml
+storybook-static
+docs
+*.md
+*.svg

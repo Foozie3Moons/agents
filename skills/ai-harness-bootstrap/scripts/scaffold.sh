@@ -42,6 +42,9 @@ case "$KIND" in
     node -e '
       const fs = require("fs"); const p = process.argv[1];
       const j = JSON.parse(fs.readFileSync(p, "utf8")); delete j.pnpm;
+      // Prettier runs once, from the workspace root
+      delete j.scripts.format; delete j.scripts["format:check"]; delete j.devDependencies.prettier;
+      j.scripts.check = j.scripts.check.replace("pnpm format:check && ", "");
       fs.writeFileSync(p, JSON.stringify(j, null, 2) + "\n");
     ' "$TARGET/src/frontend/package.json"
     layer bff-app "$TARGET"

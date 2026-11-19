@@ -58,18 +58,32 @@ const DEEP_IMPORT_BANS = [
 
 const INLINE_STYLE_BANS = [
   {
-    selector: "JSXAttribute[name.name='style'] > JSXExpressionContainer > ObjectExpression > Property[key.type='Literal']:not([key.value=/^--/])",
-    message: 'JSX style={} is banned except for CSS custom-property keys (--*). Use a .module.css class, :disabled / data-* for state, a custom property for measured values.',
+    selector:
+      "JSXAttribute[name.name='style'] > JSXExpressionContainer > ObjectExpression > Property[key.type='Literal']:not([key.value=/^--/])",
+    message:
+      'JSX style={} is banned except for CSS custom-property keys (--*). Use a .module.css class, :disabled / data-* for state, a custom property for measured values.',
   },
   {
-    selector: "JSXAttribute[name.name='style'] > JSXExpressionContainer > ObjectExpression > Property[key.type='Identifier']",
-    message: 'JSX style={} is banned except for CSS custom-property keys (--*). Move static styles to the sibling .module.css.',
+    selector:
+      "JSXAttribute[name.name='style'] > JSXExpressionContainer > ObjectExpression > Property[key.type='Identifier']",
+    message:
+      'JSX style={} is banned except for CSS custom-property keys (--*). Move static styles to the sibling .module.css.',
   },
 ];
 
 module.exports = tseslint.config(
   {
-    ignores: ['dist/**', 'coverage/**', 'storybook-static/**', '.storybook/**', 'eslint.config.cjs', '.dependency-cruiser.cjs', 'rsbuild.config.ts', 'rstest.config.ts', 'rstest.setup.ts'],
+    ignores: [
+      'dist/**',
+      'coverage/**',
+      'storybook-static/**',
+      '.storybook/**',
+      'eslint.config.cjs',
+      '.dependency-cruiser.cjs',
+      'rsbuild.config.ts',
+      'rstest.config.ts',
+      'rstest.setup.ts',
+    ],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
@@ -80,9 +94,14 @@ module.exports = tseslint.config(
     rules: {
       'no-console': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/no-unused-vars': ['error', {
-        argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_',
-      }],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
       '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
       // Declaration merging (src/rstest-matchers.d.ts) needs an interface that only extends.
       '@typescript-eslint/no-empty-object-type': ['error', { allowInterfaces: 'with-single-extends' }],
@@ -130,9 +149,17 @@ module.exports = tseslint.config(
     files: ['src/**/index.ts', 'src/**/index.tsx'],
     ignores: ['src/logicalComponents/**/index.tsx'],
     rules: {
-      'no-restricted-syntax': ['error', ...NETWORK_BANS,
-        { selector: 'ExportAllDeclaration', message: 'Barrel re-exports are forbidden. The only barrel is logicalComponents/<Name>/index.tsx.' },
-        { selector: 'ExportNamedDeclaration[source]', message: 'Barrel re-exports are forbidden. The only barrel is logicalComponents/<Name>/index.tsx.' },
+      'no-restricted-syntax': [
+        'error',
+        ...NETWORK_BANS,
+        {
+          selector: 'ExportAllDeclaration',
+          message: 'Barrel re-exports are forbidden. The only barrel is logicalComponents/<Name>/index.tsx.',
+        },
+        {
+          selector: 'ExportNamedDeclaration[source]',
+          message: 'Barrel re-exports are forbidden. The only barrel is logicalComponents/<Name>/index.tsx.',
+        },
       ],
     },
   },

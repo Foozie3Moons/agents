@@ -2,8 +2,8 @@
    spacing or type value. Placeholders below are deliberately few: pick the real
    ones before building a surface, do not invent them per component. */
 :root {
-  --font-body: "TODO", sans-serif;
-  --font-mono: "TODO", monospace;
+  --font-body: 'TODO', sans-serif;
+  --font-mono: 'TODO', monospace;
 
   --color-bg: #ffffff;
   --color-fg: #111111;

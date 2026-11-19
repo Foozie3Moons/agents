@@ -12,13 +12,7 @@
 
 'use strict';
 
-const NEST_CLASS_DECORATORS = new Set([
-  'Injectable',
-  'Controller',
-  'WebSocketGateway',
-  'Catch',
-  'Module',
-]);
+const NEST_CLASS_DECORATORS = new Set(['Injectable', 'Controller', 'WebSocketGateway', 'Catch', 'Module']);
 
 /**
  * Returns true if the given decorator node's name matches any of the Nest class
@@ -80,14 +74,13 @@ module.exports = {
   meta: {
     type: 'problem',
     docs: {
-      description:
-        'Require @Inject() on every constructor parameter in Nest-decorated classes.',
+      description: 'Require @Inject() on every constructor parameter in Nest-decorated classes.',
       recommended: true,
     },
     messages: {
       missingInject:
-        "Nest constructor parameter missing @Inject(). " +
-        "tsx emits primitive paramtypes and Nest fails at boot without it.",
+        'Nest constructor parameter missing @Inject(). ' +
+        'tsx emits primitive paramtypes and Nest fails at boot without it.',
     },
     schema: [],
   },
@@ -114,9 +107,7 @@ function checkClass(classNode, context) {
 
   // Find the constructor method.
   const ctor = classNode.body.body.find(
-    (member) =>
-      member.type === 'MethodDefinition' &&
-      member.kind === 'constructor',
+    (member) => member.type === 'MethodDefinition' && member.kind === 'constructor',
   );
   if (!ctor) return;
 
@@ -125,8 +116,7 @@ function checkClass(classNode, context) {
 
   for (const param of params) {
     // TSParameterProperty wraps `private readonly foo: Foo` — check the wrapper.
-    const target =
-      param.type === 'TSParameterProperty' ? param : param;
+    const target = param.type === 'TSParameterProperty' ? param : param;
 
     if (!hasInjectDecorator(target)) {
       context.report({

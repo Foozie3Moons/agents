@@ -14,9 +14,14 @@ export class MigrationRunner {
   run(): string[] {
     this.db.exec('CREATE TABLE IF NOT EXISTS schema_migrations (name TEXT PRIMARY KEY, applied_at INTEGER NOT NULL)');
     const applied = new Set(
-      this.db.prepare('SELECT name FROM schema_migrations').all().map((r) => (r as { name: string }).name),
+      this.db
+        .prepare('SELECT name FROM schema_migrations')
+        .all()
+        .map((r) => (r as { name: string }).name),
     );
-    const files = readdirSync(this.dir).filter((f) => /^\d{3}_.+\.sql$/.test(f)).sort();
+    const files = readdirSync(this.dir)
+      .filter((f) => /^\d{3}_.+\.sql$/.test(f))
+      .sort();
     const record = this.db.prepare('INSERT INTO schema_migrations (name, applied_at) VALUES (?, ?)');
     const ran: string[] = [];
     for (const file of files) {

@@ -16,7 +16,7 @@ Grouping inside `src/` is by feature, not by type. No `utils/`. A package that g
 
 ## Scripts
 
-`build` (tsc to `dist/`), `typecheck`, `test`, `lint`, `depcruise`, `check` (what CI runs).
+`build` (tsc to `dist/`), `typecheck`, `test`, `format`, `format:check`, `lint`, `depcruise`, `check` (what CI runs).
 
 ## Guards
 

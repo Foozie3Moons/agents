@@ -29,7 +29,7 @@ The template ships one chain through every layer (`useHealth` → `HealthStatus`
 
 ## Scripts
 
-`dev` (rsbuild dev), `build` (tsc + rsbuild build), `typecheck`, `preview`, `test` (rstest), `test:watch`, `lint`, `lint:css`, `depcruise`, `depcruise:graph`, `storybook`, `build-storybook`, `check`.
+`dev` (rsbuild dev), `build` (tsc + rsbuild build), `typecheck`, `preview`, `test` (rstest), `test:watch`, `format`, `format:check`, `lint`, `lint:css`, `depcruise`, `depcruise:graph`, `storybook`, `build-storybook`, `check`.
 
 ## Guards
 
