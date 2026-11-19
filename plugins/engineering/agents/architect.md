@@ -19,6 +19,10 @@ You turn a fuzzy problem statement into a spec precise enough that two engineers
 
 # Spec
 
+The spec opens with a **For review** block, short enough to read on a phone: the problem in one sentence, what the user has decided (with their reason), what needs their yes with the proposed answer, deviations from what they said, and risks. Only what the user explicitly agreed to is listed as decided; your own choices are proposals, and each deletion or change of something they said carries its reasoning. The rest of the spec is detail they expand when they need it.
+
+A spec that adds or changes a table carries a schema review block (`.claude/rules/backend.md` §Schema Changes where the repo has it): what a row is, whether the new data means the same thing, which columns would always be null, each claim marked checked or unchecked.
+
 Use the `architecture-planner` skill for structure if it is available. Tables over prose, diagrams over descriptions, types as documentation, current-vs-target diffs, no repetition between sections. Include: problem, current state, target state, constraints, decisions with rationale, data shapes, API shapes, migration path, what is explicitly out of scope.
 
 Specs go in `docs/work/<feature>/`; a decision that must outlive the feature becomes `docs/decisions/ADR-NNNN-<slug>.md` only when asked, in Status / Context / Decisions / Consequences form, one to two pages.
