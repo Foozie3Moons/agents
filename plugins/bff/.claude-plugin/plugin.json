@@ -1,5 +1,5 @@
 {
   "name": "bff",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Engineer agents and rules for NestJS backend-for-frontend apps with a React frontend: five-layer modules, container/presentational UI, DDD/OOP defaults, mechanical enforcement."
 }
